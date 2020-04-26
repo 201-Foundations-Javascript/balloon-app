@@ -121,7 +121,7 @@ function showLeaderboard() {
   if (localStorage.getItem('resultsInLocalStorage')){
     getUsersFromLocalStorage();
     var num = stringResultsInStorage.length -1;
-    for (var j = num; j >= 0; j--){
+    for (var j = 0; j <= num; j++){
       newTrEl = document.createElement('tr');
       var newTdEl = document.createElement('td');
       newTdEl.textContent = stringResultsInStorage[j].name;
@@ -198,7 +198,7 @@ function renderInstructions() {
   target.appendChild(h1);
 }
 Balloon.goodBalloonArray = [];
-function goodBalloon(){
+function goodBalloon(stagger){
   Balloon.goodBalloonArray = [];
 
   var randomIndex = Math.floor(Math.random() * (Balloon.colorArray.length));
@@ -209,9 +209,10 @@ function goodBalloon(){
   var createImg = document.createElement('img');
   var newBalloon = new Balloon(randomIndex);
   var balloonLeft = Math.floor(Math.random() * (100 - 10));
-  var balloonTop = Math.floor(Math.random() * (90 - 15) + 10);
+  var balloonTop = Math.floor(Math.random() + 110 + stagger);
   createImg.src = newBalloon.imageSrc;
   createImg.id = newBalloon.color;
+  createImg.className = 'balloon';
   createImg.style.position = 'absolute';
   createImg.style.left = balloonLeft + '%';
   createImg.style.top = balloonTop + '%'; // min 100 px
@@ -219,15 +220,16 @@ function goodBalloon(){
   divEl.appendChild(createImg);
 }
 
-function badBalloon(){
+function badBalloon(stagger){
   var target = document.getElementById('game');
   var balloonLeft = Math.floor(Math.random() * (100 - 10));
-  var balloonTop = Math.floor(Math.random() * (90 - 15) + 10);
+  var balloonTop = Math.floor(Math.random() + 110 + stagger);
   var randomIndex = Math.floor(Math.random() * (Balloon.colorArray.length));
   console.log(randomIndex);
   var createImg = document.createElement('img');
   var newRandomBalloon = new Balloon(randomIndex);
   createImg.id = newRandomBalloon.color;
+  createImg.className = 'balloon';
   createImg.src = newRandomBalloon.imageSrc;
   createImg.style.position = 'absolute';
   createImg.style.left = balloonLeft + '%';
@@ -245,30 +247,34 @@ function renderBalloons() {
   var randomBalloon = 2;
   var balloonCount = 1;
   
-  goodBalloon();
+  var stagger = 30;
+  goodBalloon(stagger);
   renderInstructions();
   balloonCount = balloonCount + 1;
-  badBalloon();
-
+  badBalloon(stagger);
   var sec = 25;
   for (var i = 0; i < randomBalloon; i++) {
-    badBalloon();
+    badBalloon(stagger);
   }
   randomBalloon = randomBalloon + 2;
 
   var balloonRender = setInterval(function () {
     for (i = 0; i < balloonCount; i++) {
       //loop for the target balloons
-      goodBalloon();
+      goodBalloon(stagger);
       document.getElementById('instructions').remove();
       renderInstructions();
+      stagger = stagger + 10;
 
     }
+    stagger = 0;
     balloonCount = balloonCount + 1;
     for (i = 0; i < randomBalloon; i++) {
       //loop for the target balloons
-      badBalloon();
+      badBalloon(stagger);
+      stagger = stagger + 10;
     }
+    stagger = 0;
     randomBalloon = randomBalloon + 2;
     sec = sec - 3;
     if (sec < 0) {
@@ -359,6 +365,6 @@ function endGame() {
 
   setTimeout( function(){
     // send user to results page
-    window.location.href = 'https://bryantdavis1986.github.io/balloon-app/results.html';
+    showLeaderboard();
   }, 6000);
 }

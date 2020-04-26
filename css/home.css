@@ -135,6 +135,7 @@ body {
   /* padding: 30px; */
   font-family: 'Open Sans', sans-serif;
   background: maroon;
+  /* overflow: hidden; */
   /* color: #fff; */
 }
 
@@ -193,4 +194,14 @@ th,td {
   border:1px solid rgb(13, 14, 13);
   padding: 10px;
   font-size:24px;
+}
+
+.balloon {
+  animation: myfirst 15s 2;
+  animation-direction: normal;
+}
+
+@keyframes myfirst {
+  /* 0%   {bottom: 110%;} */
+  25%  {top: 10%;}
 }

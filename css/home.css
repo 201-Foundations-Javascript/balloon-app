@@ -1,0 +1,196 @@
+.game-screen {
+  border: 3px solid black;
+  margin-top: 10px;
+  height: 50%;
+  width: 50%;
+}
+
+.form {
+  margin-top: 20px;
+}
+
+.form > input, select {
+  padding: 5px;
+  margin: 5px;
+}
+
+#play-button {
+  padding: 15px;
+  margin: 10px;
+  background-color: red;
+  color: white;
+  border-radius: 5px;
+  letter-spacing: 3px;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+
+#play-button:hover {
+  -webkit-transform: scale(1.3);
+  -ms-transform: scale(1.3);
+  transform: scale(1.3);
+}
+
+#game {
+  background-image: url("https://j.gifs.com/mwryBn.gif");
+  height: 100vh;
+  width: 100vw;
+  background-size: cover;
+}
+
+h3 {
+  font-size: 50px;
+  padding-top: 30px;
+  padding-right: 45px;
+  float: right;
+} 
+
+#timer {
+  float: left;
+  margin-left: 30px;
+}
+
+#clickAnywhere {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: burlywood;
+  padding-left: 40px;
+  padding-bottom: 15px;
+  font-weight: bold;
+  color: red;
+}
+
+#instructions {
+  text-align: center;
+  font-size: 50px;
+  padding-top: 30px;
+  font-weight: bold;
+  position: absolute;
+  margin-left: 30%;
+}
+
+p {
+  width: 50%;
+  margin: 0 auto;
+  padding-top: 15px;
+  text-indent: 25px;
+}
+
+
+#balloon-gif, #game-over-gif {
+  height: 60vh;
+  width: 40vw;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#logo {
+  height: 30vh;
+  width: 70vw;
+  margin-left: 15%;
+  margin-top: 15%;
+}
+
+.buttons {
+  margin-top: 10%;
+  border: red dotted 1px;
+  width: 30vw;
+  height: 3vw;
+  margin-left: 35%;
+}
+
+button {
+  float: left;
+  margin: 0;
+  padding: 0;
+  /* display: inline-block; */
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: maroon;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+button:hover {background-color: #3e8e41}
+
+button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+body {
+  /* general styles */
+  /* padding: 30px; */
+  font-family: 'Open Sans', sans-serif;
+  background: maroon;
+  /* color: #fff; */
+}
+
+body:after {
+  /* content: ""; */
+  display: block;
+  position: fixed; /* could also be absolute */ 
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 10;
+  background-color: rgba(0,0,0,0.5);
+}
+
+
+.formDiv{
+  width: 60vw;
+  height: 60vh;
+  /* line-height: 200px; */
+  position: fixed;
+  top: 50%; 
+  left: 50%;
+  background-color: maroon;
+  border-radius: 5px;
+  text-align: center;
+  z-index: 11; /* 1px higher than the overlay layer */
+  transform: translate(-50%, -50%);
+}
+
+#account {
+  font-size: 50px;
+}
+
+table {
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 15px;
+  padding-top: 30px;
+  color: white;
+  
+}
+
+th {
+  font-weight: bolder;
+}
+
+th,
+td {
+  border: 1px solid rgb(13, 14, 13);
+  padding: 10px;
+  font-size: 24px;
+}
+
+th,td {
+  border:1px solid rgb(13, 14, 13);
+  padding: 10px;
+  font-size:24px;
+}

@@ -1,0 +1,39 @@
+table {
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 15px;
+  padding-top: 30px;
+  
+}
+
+th {
+  font-weight: bolder;
+}
+
+th,
+td {
+  border: 1px solid rgb(13, 14, 13);
+  padding: 10px;
+  font-size: 24px;
+}
+
+th,td {
+  border:1px solid rgb(13, 14, 13);
+  padding: 10px;
+  font-size:24px;
+}
+
+main {
+  min-height: 325px;
+}
+
+h2 {
+  text-align: center;
+  padding-top: 20px;
+  color: rgb(98,2,171);
+  font-size: 24px;
+}
+
+footer {
+  margin-top: 20px;
+}

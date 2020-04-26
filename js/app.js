@@ -244,7 +244,7 @@ function renderBalloons() {
   var divEl = document.getElementById('game');
   divEl.addEventListener('click', balloonClickHandler);
   //  render balloons to the page every x seconds using the increased balloon count
-  var randomBalloon = 2;
+  var randomBalloon = 3;
   var balloonCount = 1;
   
   var stagger = 30;
@@ -252,7 +252,7 @@ function renderBalloons() {
   renderInstructions();
   balloonCount = balloonCount + 1;
   badBalloon(stagger);
-  var sec = 25;
+  var sec = 60;
   for (var i = 0; i < randomBalloon; i++) {
     badBalloon(stagger);
   }
@@ -268,19 +268,19 @@ function renderBalloons() {
 
     }
     stagger = 0;
-    balloonCount = balloonCount + 1;
+    // balloonCount = balloonCount + 1;
     for (i = 0; i < randomBalloon; i++) {
       //loop for the target balloons
       badBalloon(stagger);
       stagger = stagger + 10;
     }
     stagger = 0;
-    randomBalloon = randomBalloon + 2;
-    sec = sec - 3;
+    // randomBalloon = randomBalloon + 2;
+    sec = sec - 1;
     if (sec < 0) {
       clearInterval(balloonRender);
     }
-  }, 3000);
+  }, 1500);
 }
 
 function startTimer() {
@@ -322,7 +322,7 @@ function renderGif() {
 
 //bind the timer to the event
 function handleTimer(event) {
-  var sec = 30;
+  var sec = 60;
   var timer = setInterval(function () {
     document.getElementById('timer').innerHTML =
       '00:' + sec.toString().padStart(2, '0');

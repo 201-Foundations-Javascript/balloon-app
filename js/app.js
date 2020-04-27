@@ -158,6 +158,7 @@ function submitHandler(event) {
   target.innerHTML = '';
   var createDiv = document.createElement('div');
   createDiv.id = 'game';
+  createDiv.style.backgroundImage = "url('https://media.giphy.com/media/XqCKfrRcB31PG/giphy.gif')"
   target.appendChild(createDiv);
   renderCurrentScore();
   var divEl = document.getElementById('game');
@@ -282,8 +283,8 @@ function renderBalloons() {
     }
     stagger = 0;
     // randomBalloon = randomBalloon + 2;
-    sec = sec - 1;
-    if (sec < 0) {
+    sec = sec - 1.5;
+    if (sec < 1.5) {
       clearInterval(balloonRender);
     }
   }, 1500);
@@ -354,11 +355,11 @@ function timerRender(interval) {
 }
 
 function endGame() {
-  document.getElementById('game').remove();
-  var createDiv = document.createElement('div');
-  var target = document.getElementById('deleteMe')
-  createDiv.id = 'game';
-  target.appendChild(createDiv);
+  document.getElementById('game').innerHTML = '';
+  // var createDiv = document.createElement('div');
+  // var target = document.getElementById('deleteMe')
+  // createDiv.id = 'game';
+  // target.appendChild(createDiv);
 
   renderGif();
   // push currentScore into array

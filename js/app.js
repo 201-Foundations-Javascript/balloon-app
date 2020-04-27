@@ -62,10 +62,15 @@ playClick.addEventListener('click', createForm);
 
 function createForm() {
   var divEl = document.getElementsByTagName("BODY")[0];
-  // divEl.content = "";
+  divEl.className = "body";
   var creatediv = document.createElement('div');
   creatediv.className = 'formDiv';
   creatediv.id = 'formDiv';
+  var exit = document.createElement('a');
+  exit.href = 'index.html';
+  exit.innerHTML = 'Exit';
+  exit.style.fontSize = '30px';
+  creatediv.appendChild(exit);
   var divHeader = document.createElement('h1');
   divHeader.id = 'account';
   divHeader.innerHTML = 'Create an Account';
@@ -97,10 +102,12 @@ leaderboard.addEventListener('click', showLeaderboard);
 
 function showLeaderboard() {
   var divEl = document.getElementsByTagName("BODY")[0];
-  // divEl.content = "";
+  divEl.className = "body";
   var creatediv = document.createElement('div');
   creatediv.className = 'formDiv';
   creatediv.id = 'formDiv';
+  creatediv.style.overflowX = 'hidden';
+  creatediv.style.overflowX = 'auto';
   var exit = document.createElement('a');
   exit.href = 'index.html';
   exit.innerHTML = 'Exit';
@@ -142,6 +149,8 @@ function showLeaderboard() {
 // create an event handler for form
 function submitHandler(event) {
   event.preventDefault();
+  var body = document.getElementsByTagName('BODY')[0];
+  body.className = "none";
   var userValue = document.getElementById('name');
   new User(userValue.value);
   var formDiv = document.getElementById('formDiv').remove();
@@ -203,8 +212,6 @@ function goodBalloon(stagger){
 
   var randomIndex = Math.floor(Math.random() * (Balloon.colorArray.length));
   Balloon.goodBalloonArray.push(randomIndex)
-  console.log('random index' + randomIndex);
-  console.log('random index array after it was pushed ' + Balloon.goodBalloonArray);
   var divEl = document.getElementById('game');
   var createImg = document.createElement('img');
   var newBalloon = new Balloon(randomIndex);
@@ -225,7 +232,6 @@ function badBalloon(stagger){
   var balloonLeft = Math.floor(Math.random() * (100 - 10));
   var balloonTop = Math.floor(Math.random() + 110 + stagger);
   var randomIndex = Math.floor(Math.random() * (Balloon.colorArray.length));
-  console.log(randomIndex);
   var createImg = document.createElement('img');
   var newRandomBalloon = new Balloon(randomIndex);
   createImg.id = newRandomBalloon.color;
@@ -364,6 +370,8 @@ function endGame() {
   localStorage.setItem('resultsInLocalStorage', stringyUserResults);
 
   setTimeout( function(){
+    var divEl = document.getElementById('game');
+    divEl.style.backgroundImage = "url('https://media.giphy.com/media/TdXZkVaakMZmU/giphy.gif')";
     // send user to results page
     showLeaderboard();
   }, 6000);

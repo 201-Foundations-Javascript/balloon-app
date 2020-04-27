@@ -139,8 +139,8 @@ body {
   /* color: #fff; */
 }
 
-body:after {
-  /* content: ""; */
+.body:after {
+  content: "";
   display: block;
   position: fixed; /* could also be absolute */ 
   top: 0;
@@ -205,3 +205,4 @@ th,td {
   /* 0%   {bottom: 110%;} */
   25%  {top: 10%;}
 }
+

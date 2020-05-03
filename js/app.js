@@ -85,12 +85,12 @@ function createForm() {
   creatediv.appendChild(divHeader);
   var createForm = document.createElement('form');
   createForm.id = 'form';
-  var createInput = document.createElement('input');
-  createInput.type = 'text';
-  createInput.id = 'name';
-  createInput.name = 'name';
-  createInput.placeholder = 'UserName';
-  createForm.appendChild(createInput);
+  // var createInput = document.createElement('input');
+  // createInput.type = 'text';
+  // createInput.id = 'name';
+  // createInput.name = 'name';
+  // createInput.placeholder = 'UserName';
+  // createForm.appendChild(createInput);
   var createButton = document.createElement('input');
   createButton.id = 'difficulty';
   createButton.type = 'submit';
@@ -188,8 +188,8 @@ function submitHandler(event) {
     new Difficulty(2, 8, 1500, 4500);
   }
   console.log(Difficulty.difficultyArray);
-  var userValue = document.getElementById('name');
-  new User(userValue.value);
+  // var userValue = document.getElementById('name');
+  // new User(userValue.value);
   var formDiv = document.getElementById('formDiv').remove();
   var target = document.getElementById('deleteMe');
   target.innerHTML = '';

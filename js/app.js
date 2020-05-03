@@ -2,6 +2,7 @@
 'use strict';
 
 // create userArray to store all user objects
+Difficulty.difficultyArray = [];
 User.userArray = [];
 if (localStorage.getItem('resultsInLocalStorage')){
   getUsersFromLocalStorage();
@@ -24,7 +25,7 @@ Balloon.colorArray = [
   { color: 'purple', colorPic: 'assets/purple-balloon.png', value: 'rgb(143,3,171)'},
   { color: 'pink', colorPic: 'assets/pink-balloon.png', value: 'rgb(255,0,117)'},
   { color: 'orange', colorPic: 'assets/orange-balloon.png', value: 'rgb(255,101,2)'},
-  { color: 'light-blue', colorPic: 'assets/light-blue-balloon.png', value: 'rgb(0,176,228)'},
+  { color: 'lightblue', colorPic: 'assets/light-blue-balloon.png', value: 'rgb(0,176,228)'},
 ];
 
 // create constructor for Balloons
@@ -43,6 +44,13 @@ function User(name) {
   User.userArray.push(this);
 }
 
+function Difficulty(balloonsRenderedGood, balloonsRenderedBad, intervalRendered, intervalColorChanged) {
+  this.balloonsRenderedGood = balloonsRenderedGood;
+  this.balloonsRenderedBad = balloonsRenderedBad;
+  this.intervalRendered = intervalRendered;
+  this.intervalColorChanged = intervalColorChanged;
+  Difficulty.difficultyArray.push(this);
+}
 // create renderCurrentScore function
 function renderCurrentScore() {
   var targetDiv = document.getElementById('game');
@@ -84,9 +92,24 @@ function createForm() {
   createInput.placeholder = 'UserName';
   createForm.appendChild(createInput);
   var createButton = document.createElement('input');
-  createButton.id = 'play-button';
+  createButton.id = 'difficulty';
   createButton.type = 'submit';
-  createButton.value = 'Play';
+  createButton.value = 'Easy';
+  createForm.appendChild(createButton);
+  var createButton = document.createElement('input');
+  createButton.id = 'difficulty';
+  createButton.type = 'submit';
+  createButton.value = 'Normal';
+  createForm.appendChild(createButton);
+  var createButton = document.createElement('input');
+  createButton.id = 'difficulty';
+  createButton.type = 'submit';
+  createButton.value = 'Hard';
+  createForm.appendChild(createButton);
+  var createButton = document.createElement('input');
+  createButton.id = 'difficulty';
+  createButton.type = 'submit';
+  createButton.value = 'Hell';
   createForm.appendChild(createButton);
   creatediv.appendChild(createForm);
   divEl.appendChild(creatediv);
@@ -94,7 +117,7 @@ function createForm() {
   // create event listener for form
   // this will be targetting the submit/play button
   var formSubmission = document.getElementById('form');
-  formSubmission.addEventListener('submit', submitHandler);
+  formSubmission.addEventListener('click', submitHandler);
 }
 
 var leaderboard = document.getElementById('leaderboard');
@@ -151,6 +174,20 @@ function submitHandler(event) {
   event.preventDefault();
   var body = document.getElementsByTagName('BODY')[0];
   body.className = "none";
+  console.log(event.target)
+  if(event.target.value === 'Easy'){
+    new Difficulty(1, 2, 3000, 1000);
+  }
+  else if(event.target.value === 'Normal'){
+    new Difficulty(1, 3, 2500, 8000);
+  }
+  else if(event.target.value === 'Hard'){
+    new Difficulty(1, 4, 2000, 6000);
+  }
+  else if(event.target.value === 'Hell'){
+    new Difficulty(2, 8, 1500, 4500);
+  }
+  console.log(Difficulty.difficultyArray);
   var userValue = document.getElementById('name');
   new User(userValue.value);
   var formDiv = document.getElementById('formDiv').remove();
@@ -201,9 +238,9 @@ function renderInstructions() {
   h1.id = 'instructions';
   h1.innerHTML = 'Click the ' + Balloon.clickBalloon[0].color + ' balloons';
   h1.style.backgroundColor = Balloon.clickBalloon[0].color;
-  setInterval(function() {
-    h1.style.backgroundColor = '';
-  }, 1000);
+  // setInterval(function() {
+  //   h1.style.backgroundColor = '';
+  // }, 1000);
 
   target.appendChild(h1);
 }
@@ -224,7 +261,7 @@ function noDelaySetInterval(func, interval) {
 } 
 
 function startSetInterval() { 
-  noDelaySetInterval(exampleFunction, 10000); 
+  noDelaySetInterval(exampleFunction, Difficulty.difficultyArray[0].intervalColorChanged); 
 } 
 
 function goodBalloon(stagger){
@@ -279,8 +316,8 @@ function renderBalloons() {
   var divEl = document.getElementById('game');
   divEl.addEventListener('click', balloonClickHandler);
   //  render balloons to the page every x seconds using the increased balloon count
-  var randomBalloon = 3;
-  var balloonCount = 1;
+  var randomBalloon = Difficulty.difficultyArray[0].balloonsRenderedBad;
+  var balloonCount = Difficulty.difficultyArray[0].balloonsRenderedGood;
   
   var stagger = 30;
   goodBalloon(stagger);
@@ -316,7 +353,7 @@ function renderBalloons() {
     if (sec < 1.5) {
       clearInterval(balloonRender);
     }
-  }, 1500);
+  }, Difficulty.difficultyArray[0].intervalRendered);
 }
 
 function startTimer() {

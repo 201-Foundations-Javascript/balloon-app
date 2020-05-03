@@ -173,7 +173,7 @@ function submitHandler(event) {
 
 function balloonClickHandler(event) {
   
-  if (event.target.id === Balloon.colorArray[Balloon.goodBalloonArray[0]].color) {
+  if (event.target.id === Balloon.goodBalloonArray[Balloon.goodBalloonArray.length -1].color) {
     // if color === 'selected-color', add points to score
     User.userArray[User.userArray.length - 1].currentScore++;
     popBalloon();
@@ -199,20 +199,19 @@ function renderInstructions() {
   var target = document.getElementById('game');
   var h1 = document.createElement('h1');
   h1.id = 'instructions';
-  h1.innerHTML = 'Click the ' + Balloon.colorArray[Balloon.goodBalloonArray[0]].color + ' balloons';
-  h1.style.backgroundColor = Balloon.colorArray[Balloon.goodBalloonArray[0]].value;
+  h1.innerHTML = 'Click the ' + Balloon.goodBalloonArray[Balloon.goodBalloonArray.length -1].color + ' balloons';
+  h1.style.backgroundColor = Balloon.goodBalloonArray[Balloon.goodBalloonArray.length - 1].color;
   setInterval(function() {
     h1.style.backgroundColor = '';
   }, 1000);
 
   target.appendChild(h1);
 }
+
 Balloon.goodBalloonArray = [];
 function goodBalloon(stagger){
-  Balloon.goodBalloonArray = [];
 
   var randomIndex = Math.floor(Math.random() * (Balloon.colorArray.length));
-  Balloon.goodBalloonArray.push(randomIndex)
   var divEl = document.getElementById('game');
   var createImg = document.createElement('img');
   var newBalloon = new Balloon(randomIndex);
@@ -226,6 +225,33 @@ function goodBalloon(stagger){
   createImg.style.top = balloonTop + '%'; // min 100 px
   createImg.style.height = '100px';
   divEl.appendChild(createImg);
+  // function startSetInterval() { 
+              
+  //   Balloon.goodBalloonArray.push(newBalloon)
+  //   console.log(Balloon.goodBalloonArray);
+      
+  //   setInterval(function exampleFunction() { 
+  //     Balloon.goodBalloonArray.push(newBalloon)
+  //     console.log(Balloon.goodBalloonArray);
+  //   }(), 10000); 
+  // }
+  startSetInterval();
+  var count = 1; 
+      
+  function exampleFunction() { 
+    Balloon.goodBalloonArray.push(newBalloon)
+    console.log(Balloon.goodBalloonArray[Balloon.goodBalloonArray.length -1].color);
+      count = count + 1; 
+  } 
+
+  function noDelaySetInterval(func, interval) { 
+      func(); 
+      return setInterval(func, interval); 
+  } 
+
+  function startSetInterval() { 
+      noDelaySetInterval(exampleFunction, 10000); 
+  } 
 }
 
 function badBalloon(stagger){

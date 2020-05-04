@@ -176,15 +176,19 @@ function submitHandler(event) {
   body.className = "none";
   console.log(event.target)
   if(event.target.value === 'Easy'){
+    new User('easy')
     new Difficulty(1, 2, 3000, 1000);
   }
   else if(event.target.value === 'Normal'){
+    new User('normal')
     new Difficulty(1, 3, 2500, 8000);
   }
   else if(event.target.value === 'Hard'){
+    new User('hard')
     new Difficulty(1, 4, 2000, 6000);
   }
   else if(event.target.value === 'Hell'){
+    new User('hell')
     new Difficulty(2, 8, 1500, 4500);
   }
   console.log(Difficulty.difficultyArray);
